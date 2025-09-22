@@ -53,7 +53,8 @@ export function QuestionRound({
 
   const currentPlayer = players[currentPlayerIndex];
   const currentQuestion = questions[currentQuestionIndex];
-  const totalProgress = ((currentPlayerIndex * 4) + currentQuestionIndex) / (players.length * 4) * 100;
+  const totalQuestionsAnswered = players.reduce((total, player) => total + player.handCards.length, 0);
+  const totalProgress = (totalQuestionsAnswered) / (players.length * 4) * 100;
 
   const handleAnswer = useCallback(async (answer: string) => {
     if (deck.length === 0) return;
@@ -121,7 +122,7 @@ export function QuestionRound({
           </div>
           <Progress value={totalProgress} className="w-full max-w-md mx-auto mb-4" />
           <p className="text-muted-foreground">
-            Speler {currentPlayerIndex + 1} van {players.length} - Vraag {currentQuestionIndex + 1} van 4
+            {currentPlayer.name} - Vraag {currentQuestionIndex + 1} van 4
           </p>
         </div>
 
@@ -171,8 +172,8 @@ export function QuestionRound({
                   onClick={handleNext}
                   className="bg-gradient-casino text-primary-foreground font-semibold hover:shadow-gold"
                 >
-                  {currentQuestionIndex < 3 || currentPlayerIndex < players.length - 1 ? (
-                    <>Volgende <ArrowRight className="ml-2 w-4 h-4" /></>
+                  {totalQuestionsAnswered < players.length * 4 - 1 ? (
+                    <>Volgende speler <ArrowRight className="ml-2 w-4 h-4" /></>
                   ) : (
                     'Naar Piramide'
                   )}

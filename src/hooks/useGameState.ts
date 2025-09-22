@@ -52,18 +52,11 @@ export function useGameState() {
 
   const nextQuestion = useCallback(() => {
     setGameState(prev => {
-      if (prev.currentQuestionIndex < 3) {
-        return {
-          ...prev,
-          currentQuestionIndex: prev.currentQuestionIndex + 1,
-        };
-      } else if (prev.currentPlayerIndex < prev.players.length - 1) {
-        return {
-          ...prev,
-          currentPlayerIndex: prev.currentPlayerIndex + 1,
-          currentQuestionIndex: 0,
-        };
-      } else {
+      // Calculate total questions answered so far
+      const totalQuestionsAnswered = (prev.currentPlayerIndex * 4) + prev.currentQuestionIndex + 1;
+      const totalQuestionsNeeded = prev.players.length * 4;
+
+      if (totalQuestionsAnswered >= totalQuestionsNeeded) {
         // Move to pyramid phase
         const pyramidSize = 4;
         const pyramidCards: Card[][] = [];
@@ -91,6 +84,21 @@ export function useGameState() {
           currentPlayerIndex: 0,
           currentQuestionIndex: 0,
           gameHistory: [...prev.gameHistory, 'Piramide fase gestart'],
+        };
+      }
+
+      // Move to next player for current question
+      if (prev.currentPlayerIndex < prev.players.length - 1) {
+        return {
+          ...prev,
+          currentPlayerIndex: prev.currentPlayerIndex + 1,
+        };
+      } else {
+        // All players answered current question, move to next question
+        return {
+          ...prev,
+          currentPlayerIndex: 0,
+          currentQuestionIndex: prev.currentQuestionIndex + 1,
         };
       }
     });
