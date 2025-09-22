@@ -11,6 +11,8 @@ export function BussenGame() {
     gameState,
     initializeGame,
     addCardToCurrentPlayer,
+    dealCardToCurrentPlayer,
+    dealCardOnly,
     nextQuestion,
     revealPyramidCard,
     startBusPhase,
@@ -19,8 +21,12 @@ export function BussenGame() {
     setPhase
   } = useGameState();
 
-  const handleAnswerQuestion = (answer: string, card: any) => {
-    addCardToCurrentPlayer(card);
+  const handleDealCard = () => {
+    return dealCardOnly();
+  };
+
+  const handleAnswerQuestion = (answer: string) => {
+    // Logic is now handled inside dealCardOnly
   };
 
   const handleStartBus = () => {
@@ -43,6 +49,7 @@ export function BussenGame() {
           currentQuestionIndex={gameState.currentQuestionIndex}
           deck={gameState.deck}
           onAnswerQuestion={handleAnswerQuestion}
+          onDealCard={handleDealCard}
           onNextQuestion={nextQuestion}
         />
       );
@@ -64,6 +71,8 @@ export function BussenGame() {
           busPlayer={gameState.busPlayer}
           busCards={gameState.busCards}
           currentBusIndex={gameState.currentBusIndex}
+          busLength={gameState.busLength}
+          busOpenCards={gameState.busOpenCards}
           onMakeGuess={makeBusGuess}
           onFinishGame={handleFinishGame}
         />

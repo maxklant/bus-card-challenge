@@ -59,6 +59,43 @@ export function dealCard(deck: Card[]): { card: Card; remainingDeck: Card[] } {
   return { card, remainingDeck };
 }
 
+export function dealCardWithReshuffle(deck: Card[], usedCards: Card[] = []): { 
+  card: Card; 
+  remainingDeck: Card[]; 
+  newUsedCards: Card[];
+  wasReshuffled: boolean;
+} {
+  let currentDeck = [...deck];
+  let currentUsedCards = [...usedCards];
+  let wasReshuffled = false;
+  
+  // If deck is empty, reshuffle used cards
+  if (currentDeck.length === 0 && currentUsedCards.length > 0) {
+    currentDeck = shuffleDeck(currentUsedCards);
+    currentUsedCards = [];
+    wasReshuffled = true;
+  }
+  
+  if (currentDeck.length === 0) {
+    throw new Error('No cards available to deal');
+  }
+  
+  const card = currentDeck[0];
+  const remainingDeck = currentDeck.slice(1);
+  const newUsedCards = [...currentUsedCards, card];
+  
+  return { 
+    card, 
+    remainingDeck, 
+    newUsedCards,
+    wasReshuffled 
+  };
+}
+
+export function createNewShuffledDeck(): Card[] {
+  return createDeck();
+}
+
 export function isHigher(card1: Card, card2: Card): boolean {
   return card1.value > card2.value;
 }

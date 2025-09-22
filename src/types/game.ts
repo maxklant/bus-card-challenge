@@ -26,12 +26,15 @@ export interface GameState {
   currentPlayerIndex: number;
   currentQuestionIndex: number;
   deck: Card[];
+  usedCards: Card[];
   pyramidCards: Card[][];
   pyramidRevealed: boolean[][];
   busCards: Card[];
   currentBusIndex: number;
   busPlayer: Player | null;
   gameHistory: string[];
+  busLength?: number; // Length of the bus (determined by first card)
+  busOpenCards?: number; // Number of open cards (determined by second card)
 }
 
 export interface QuestionState {

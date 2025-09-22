@@ -90,44 +90,65 @@ interface ThemeContextType {
   currentTheme: ThemeName;
   setTheme: (theme: ThemeName) => void;
   themeConfig: typeof themes[ThemeName];
+  isDarkMode: boolean;
+  toggleDarkMode: () => void;
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [currentTheme, setCurrentTheme] = useState<ThemeName>('casino-green');
+  const [isDarkMode, setIsDarkMode] = useState(true); // Default to dark mode
 
   useEffect(() => {
-    // Load saved theme from localStorage
+    // Load saved theme and dark mode from localStorage
     const savedTheme = localStorage.getItem('bussen-theme') as ThemeName;
+    const savedDarkMode = localStorage.getItem('bussen-dark-mode') === 'true';
+    
     if (savedTheme && themes[savedTheme]) {
       setCurrentTheme(savedTheme);
     }
+    setIsDarkMode(savedDarkMode);
   }, []);
 
   useEffect(() => {
-    // Apply theme to CSS custom properties
+    // Apply theme to CSS custom properties and dark mode
     const theme = themes[currentTheme];
     const root = document.documentElement;
     
+    // Apply theme colors
     root.style.setProperty('--casino-green', theme.primary);
     root.style.setProperty('--casino-gold', theme.accent);
     root.style.setProperty('--casino-felt', theme.background);
     root.style.setProperty('--gradient-casino', theme.gradient);
     root.style.setProperty('--gradient-gold', `linear-gradient(135deg, hsl(${theme.accent}), hsl(${theme.accent.split(' ')[0]} ${parseInt(theme.accent.split(' ')[1]) - 10}% ${parseInt(theme.accent.split(' ')[2]) - 5}%))`);
     
+    // Apply dark mode class
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    
     // Save to localStorage
     localStorage.setItem('bussen-theme', currentTheme);
-  }, [currentTheme]);
+    localStorage.setItem('bussen-dark-mode', isDarkMode.toString());
+  }, [currentTheme, isDarkMode]);
 
   const setTheme = (theme: ThemeName) => {
     setCurrentTheme(theme);
   };
 
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+  };
+
   const value = {
     currentTheme,
     setTheme,
-    themeConfig: themes[currentTheme]
+    themeConfig: themes[currentTheme],
+    isDarkMode,
+    toggleDarkMode
   };
 
   return (

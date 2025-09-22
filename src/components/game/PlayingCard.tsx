@@ -20,29 +20,29 @@ export function PlayingCard({
   const isRed = card?.color === 'red';
   
   const animationClass = {
-    deal: 'animate-card-deal',
-    flip: 'animate-card-flip',
+    deal: 'card-deal',
+    flip: 'card-flip',
     float: 'animate-float',
-    glow: 'animate-glow'
+    glow: 'golden-glow'
   }[animate || ''];
 
   return (
     <div
       className={cn(
-        "relative w-20 h-28 bg-card border-2 rounded-lg shadow-card",
+        "relative w-20 h-28 bg-white dark:bg-gray-800 border-2 rounded-lg shadow-lg",
         "flex flex-col items-center justify-center cursor-pointer",
-        "transition-all duration-300 hover:shadow-card-hover hover:scale-105",
-        "select-none",
+        "transition-all duration-300 hover:shadow-xl hover:scale-105",
+        "select-none border-gray-300 dark:border-gray-600",
         animationClass,
-        onClick && "hover:bg-card/90",
+        onClick && "hover:bg-gray-50 dark:hover:bg-gray-700",
         className
       )}
       onClick={onClick}
       style={{ perspective: '1000px' }}
     >
       {faceDown ? (
-        <div className="w-full h-full bg-gradient-casino border-2 border-casino-gold/30 rounded-lg flex items-center justify-center">
-          <div className="text-casino-gold text-2xl">🂠</div>
+        <div className="w-full h-full bg-gradient-to-br from-casino-copper/80 to-casino-gold/60 border-2 border-casino-gold/50 rounded-lg flex items-center justify-center">
+          <div className="text-casino-felt text-2xl font-bold">🂠</div>
         </div>
       ) : card ? (
         <>
