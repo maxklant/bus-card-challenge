@@ -1,6 +1,7 @@
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { PlayingCard } from './PlayingCard';
+import { ThemeSelector } from '@/components/ui/theme-selector';
 import { Card as GameCard, Player } from '@/types/game';
 import { Trophy, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -26,6 +27,11 @@ export function PyramidRound({
   return (
     <div className="min-h-screen bg-gradient-felt p-4">
       <div className="max-w-6xl mx-auto">
+        {/* Theme selector */}
+        <div className="fixed top-4 right-4 z-30">
+          <ThemeSelector />
+        </div>
+
         {/* Header */}
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-2 mb-4">

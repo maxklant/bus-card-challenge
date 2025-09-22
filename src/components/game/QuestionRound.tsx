@@ -2,6 +2,7 @@ import { useState, useCallback } from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { PlayingCard } from './PlayingCard';
+import { ThemeSelector } from '@/components/ui/theme-selector';
 import { Card as GameCard, QuestionType } from '@/types/game';
 import { dealCard, getSuitName } from '@/utils/cardUtils';
 import { Progress } from '@/components/ui/progress';
@@ -114,6 +115,11 @@ export function QuestionRound({
   return (
     <div className="min-h-screen bg-gradient-felt flex items-center justify-center p-4">
       <div className="w-full max-w-4xl">
+        {/* Theme selector */}
+        <div className="fixed top-4 right-4 z-30">
+          <ThemeSelector />
+        </div>
+
         {/* Header */}
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-2 mb-4">

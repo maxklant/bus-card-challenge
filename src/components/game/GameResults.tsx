@@ -1,5 +1,6 @@
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { ThemeSelector } from '@/components/ui/theme-selector';
 import { Player } from '@/types/game';
 import { Trophy, Medal, RotateCcw, Crown, Bus } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -36,6 +37,11 @@ export function GameResults({ players, busPlayer, onPlayAgain }: GameResultsProp
   return (
     <div className="min-h-screen bg-gradient-felt flex items-center justify-center p-4">
       <div className="w-full max-w-4xl">
+        {/* Theme selector */}
+        <div className="fixed top-4 right-4 z-30">
+          <ThemeSelector />
+        </div>
+
         {/* Header */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-gold rounded-full mb-4 animate-glow">

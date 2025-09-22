@@ -1,6 +1,7 @@
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { PlayingCard } from './PlayingCard';
+import { ThemeSelector } from '@/components/ui/theme-selector';
 import { Card as GameCard, Player } from '@/types/game';
 import { Progress } from '@/components/ui/progress';
 import { Bus, ArrowUp, ArrowDown, RotateCcw } from 'lucide-react';
@@ -28,6 +29,11 @@ export function BusRound({
   if (isLastCard) {
     return (
       <div className="min-h-screen bg-gradient-felt flex items-center justify-center p-4">
+        {/* Theme selector */}
+        <div className="fixed top-4 right-4 z-30">
+          <ThemeSelector />
+        </div>
+        
         <Card className="p-8 bg-card/95 backdrop-blur-sm shadow-card border-casino-gold/20 text-center max-w-md">
           <div className="mb-6">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-gold rounded-full mb-4 animate-glow">
@@ -53,6 +59,11 @@ export function BusRound({
   return (
     <div className="min-h-screen bg-gradient-felt p-4">
       <div className="max-w-4xl mx-auto">
+        {/* Theme selector */}
+        <div className="fixed top-4 right-4 z-30">
+          <ThemeSelector />
+        </div>
+
         {/* Header */}
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-2 mb-4">
