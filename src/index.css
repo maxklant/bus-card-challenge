@@ -2,57 +2,62 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Bussen Card Game Design System - Casino inspired theme with deep greens and gold accents */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Casino theme - rich greens and elegant golds */
+    --background: 140 40% 8%;
+    --foreground: 0 0% 98%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 140 50% 15%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 140 45% 12%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Casino green primary */
+    --primary: 140 60% 25%;
+    --primary-foreground: 0 0% 98%;
+    
+    /* Gold accent for highlights */
+    --secondary: 45 95% 55%;
+    --secondary-foreground: 140 50% 15%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 140 30% 20%;
+    --muted-foreground: 140 20% 65%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 45 95% 55%;
+    --accent-foreground: 140 50% 15%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 0 0% 98%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --border: 140 30% 25%;
+    --input: 140 35% 18%;
+    --ring: 45 95% 55%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Custom casino tokens */
+    --casino-felt: 140 40% 8%;
+    --casino-green: 140 60% 25%;
+    --casino-gold: 45 95% 55%;
+    --casino-silver: 0 0% 85%;
+    --casino-copper: 25 60% 45%;
+    
+    /* Gradients */
+    --gradient-casino: linear-gradient(135deg, hsl(var(--casino-green)), hsl(140 50% 30%));
+    --gradient-gold: linear-gradient(135deg, hsl(var(--casino-gold)), hsl(45 85% 45%));
+    --gradient-felt: linear-gradient(180deg, hsl(var(--casino-felt)), hsl(140 35% 12%));
+    
+    /* Card shadows */
+    --shadow-card: 0 4px 20px hsl(140 60% 8% / 0.5);
+    --shadow-card-hover: 0 8px 32px hsl(140 60% 8% / 0.7);
+    --shadow-gold: 0 0 30px hsl(var(--casino-gold) / 0.3);
 
     --radius: 0.5rem;
 
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Animations and transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .dark {

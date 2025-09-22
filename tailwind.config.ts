@@ -57,6 +57,24 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // Casino theme colors
+        casino: {
+          felt: "hsl(var(--casino-felt))",
+          green: "hsl(var(--casino-green))",
+          gold: "hsl(var(--casino-gold))",
+          silver: "hsl(var(--casino-silver))",
+          copper: "hsl(var(--casino-copper))",
+        },
+      },
+      backgroundImage: {
+        "gradient-casino": "var(--gradient-casino)",
+        "gradient-gold": "var(--gradient-gold)",
+        "gradient-felt": "var(--gradient-felt)",
+      },
+      boxShadow: {
+        "card": "var(--shadow-card)",
+        "card-hover": "var(--shadow-card-hover)",
+        "gold": "var(--shadow-gold)",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -80,10 +98,31 @@ export default {
             height: "0",
           },
         },
+        "card-flip": {
+          "0%": { transform: "rotateY(0deg)" },
+          "50%": { transform: "rotateY(-90deg)" },
+          "100%": { transform: "rotateY(0deg)" },
+        },
+        "card-deal": {
+          "0%": { transform: "translateY(-100px) scale(0.8)", opacity: "0" },
+          "100%": { transform: "translateY(0) scale(1)", opacity: "1" },
+        },
+        "float": {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-10px)" },
+        },
+        "glow": {
+          "0%, 100%": { boxShadow: "0 0 20px hsl(var(--casino-gold) / 0.3)" },
+          "50%": { boxShadow: "0 0 40px hsl(var(--casino-gold) / 0.6)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "card-flip": "card-flip 0.6s ease-in-out",
+        "card-deal": "card-deal 0.5s ease-out",
+        "float": "float 3s ease-in-out infinite",
+        "glow": "glow 2s ease-in-out infinite",
       },
     },
   },
